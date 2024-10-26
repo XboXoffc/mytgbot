@@ -5,3 +5,4 @@ just mine pet-project
   -just dice
 - /weather CITY
   - in CITY write any city
+  - i'm using https://www.weatherapi.com/ api
