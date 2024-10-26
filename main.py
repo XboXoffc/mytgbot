@@ -47,13 +47,14 @@ async def weather(message):
     {current["condition"]["text"]}
     temp: {current["temp_c"]}°C
     rain chance: {forecast[0]["day"]["daily_chance_of_rain"]}%
-
+    snow chance: {forecast[0]["day"]["daily_chance_of_snow"]}%
 *Tomorrow({forecast[1]["date"]}):*
     {forecast[1]["day"]["condition"]["text"]}
     max temp: {forecast[1]["day"]["maxtemp_c"]}°C
     min temp: {forecast[1]["day"]["mintemp_c"]}°C
     avg temp: {forecast[1]["day"]["avgtemp_c"]}°C
-    rain chance: {forecast[1]["day"]["daily_chance_of_rain"]}%"""
+    rain chance: {forecast[1]["day"]["daily_chance_of_rain"]}%
+    snow chance: {forecast[1]["day"]["daily_chance_of_snow"]}%"""
         await bot.send_message(message.chat.id, text)
     else:
         await bot.send_message(message.chat.id, f"api is not work {response}")
