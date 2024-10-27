@@ -8,7 +8,7 @@ bot = AsyncTeleBot(TOKEN, "MARKDOWN")
 
 
 
-@bot.message_handler(commands=["start", "help"], chat_types="private")
+@bot.message_handler(commands=["start", "help"])
 async def start(message):
     gtm(message)
     await bot.send_message(message.chat.id, 
@@ -27,6 +27,7 @@ async def weather(message):
     gtm(message)
     message_split = message.text.split(" ")
     city = message_split[1]
+    flags = message_split
     days = 2
     api_key=API_KEY
     base_url = "http://api.weatherapi.com/v1/forecast.json"
@@ -43,6 +44,14 @@ async def weather(message):
         forecast = data["forecast"]["forecastday"]
         text = f"""*{location["localtime"]}*
 *{location["country"]}, {location["region"]}, {location["name"]}*
+    {current["condition"]["text"]}
+    temp: {current["temp_c"]}°C
+    rain chance: {forecast[0]["day"]["daily_chance_of_rain"]}%
+    snow chance: {forecast[0]["day"]["daily_chance_of_snow"]}%"""
+        
+        if "-add" in flags or "-a" in flags:
+            text = f"""*{location["localtime"]}*
+*{location["country"]}, {location["region"]}, {location["name"]}*
 *Current:*
     {current["condition"]["text"]}
     temp: {current["temp_c"]}°C
@@ -55,9 +64,14 @@ async def weather(message):
     avg temp: {forecast[1]["day"]["avgtemp_c"]}°C
     rain chance: {forecast[1]["day"]["daily_chance_of_rain"]}%
     snow chance: {forecast[1]["day"]["daily_chance_of_snow"]}%"""
+
+        elif "-p" in flags:
+            text = "it is easter egg -- pashalko"
+
         await bot.send_message(message.chat.id, text)
     else:
-        await bot.send_message(message.chat.id, f"api is not work {response}")
+        response = response.json()
+        await bot.send_message(message.chat.id, f"api is not work\n{response}")
 
 #Подслушка
 def gtm(message):
