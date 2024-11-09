@@ -1,0 +1,2 @@
+TG_TOKEN = ""
+WHEATHER_API = ""

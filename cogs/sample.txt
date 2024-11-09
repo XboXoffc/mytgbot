@@ -1,0 +1,12 @@
+from telebot.async_telebot import AsyncTeleBot
+import asyncio
+import config
+from cogs import other
+
+TOKEN = config.TG_TOKEN
+bot = AsyncTeleBot(TOKEN, "MARKDOWN")
+
+async def main(message):
+    other.gtm(message)
+
+print("Cogs | *** is ready")
