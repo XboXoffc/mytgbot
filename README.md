@@ -1,5 +1,7 @@
 # about
 just mine pet-project
+## requares
+pytelegrambotapi
 # commands
 ## /game
   just a telegram games
@@ -12,6 +14,13 @@ just mine pet-project
 ## /weather CITY
   in CITY write any city
   - flags:
-    - -add or -a -- additional info
+    - -a(-add) — additional info
     - -p -- ???
   - i'm using https://www.weatherapi.com/ api
+## /math (num) (flag(required))
+  - flags:
+    - -sqr — square
+    - -sqrt — square root
+    - -sin — sine
+    - -cos(-cosine) — cosine
+    - -tg(-tan, -tangen) — tangen
