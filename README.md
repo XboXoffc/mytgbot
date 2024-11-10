@@ -1,6 +1,6 @@
 # about
 just mine pet-project
-## requares
+## requires
 pytelegrambotapi
 # commands
 ## /game
