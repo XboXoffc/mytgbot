@@ -1,7 +1,7 @@
 # about
 just mine pet-project
 ## requires
-pytelegrambotapi
+pytelegrambotapi;llama_cpp
 # commands
 ## /game
   just a telegram games
@@ -24,3 +24,6 @@ pytelegrambotapi
     - -sin — sine
     - -cos(-cosine) — cosine
     - -tg(-tan, -tangen) — tangen
+## /ai-assist (prompt)
+  - in config you can set gguf model, max token, system prompt
+  - this ai dont save a chat history
