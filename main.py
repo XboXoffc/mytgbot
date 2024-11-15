@@ -2,7 +2,7 @@ from telebot.async_telebot import AsyncTeleBot
 import asyncio
 import requests
 import config
-from cogs import start, info, game, weather, math, other
+from cogs import start, info, game, weather, math, ai, other
 
 TOKEN = config.TG_TOKEN
 bot = AsyncTeleBot(TOKEN, "MARKDOWN")
@@ -27,6 +27,10 @@ async def Weather(message):
 @bot.message_handler(commands=["math"])
 async def Math(message):
     await math.main(message)
+
+@bot.message_handler(commands=["ai_assist"])
+async def Ai(message):
+    await ai.main(message)
 
 @bot.callback_query_handler(func=lambda call:True)
 async def Callback(call):

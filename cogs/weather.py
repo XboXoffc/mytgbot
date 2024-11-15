@@ -14,7 +14,7 @@ async def main(message):
     try:
         city = message_split[1]
     except:
-        await bot.send_message(message.chat.id, "Вы не указали город")
+        await bot.send_message(message.chat.id, "Вы не указали город", timeout=5)
     flags = message_split
     days = 2
     api_key=API_KEY
@@ -63,7 +63,7 @@ async def main(message):
 
     else:
         response = response.json()
-        await bot.send_message(message.chat.id, f"api is not work\n{response}")
+        await bot.send_message(message.chat.id, f"api is not work\n{response}", timeout=20)
 
 
 print("Cogs | weather.py is ready")
