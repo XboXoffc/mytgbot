@@ -1,7 +1,8 @@
 # about
 just mine pet-project
+bot in telegram: @xboxoffcbot
 ## requires
-pytelegrambotapi;llama_cpp
+pytelegrambotapi; llama_cpp
 # commands
 ## /game
   just a telegram games
@@ -25,5 +26,6 @@ pytelegrambotapi;llama_cpp
     - -cos(-cosine) — cosine
     - -tg(-tan, -tangen) — tangen
 ## /ai-assist (prompt)
-  - in config you can set gguf model, max token, system prompt
-  - this ai dont save a chat history
+  - in config you can set gguf model, max token, system prompt and etc
+## /info
+  just info about me
