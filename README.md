@@ -1,5 +1,6 @@
 # about
 just mine pet-project
+
 bot in telegram: @xboxoffcbot
 ## requires
 pytelegrambotapi; llama_cpp
