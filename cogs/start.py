@@ -4,7 +4,7 @@ import config
 from cogs import other
 
 TOKEN = config.TG_TOKEN
-bot = AsyncTeleBot(TOKEN, "MARKDOWN")
+bot = AsyncTeleBot(TOKEN)
 
 
 async def main(message):
@@ -18,6 +18,6 @@ My commands:
 /math (num)(-sqrt, -sqr, -sin, -cos, -tg)
 /ai_assist (prompt)
 Check my github for docs in /about
-""")
+""", "MARKDOWN")
 
 print("Cogs | start.py is ready")

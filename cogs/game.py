@@ -4,7 +4,7 @@ import config
 from cogs import other
 
 TOKEN = config.TG_TOKEN
-bot = AsyncTeleBot(TOKEN, "MARKDOWN")
+bot = AsyncTeleBot(TOKEN)
 
 async def main(message):
     other.gtm(message)

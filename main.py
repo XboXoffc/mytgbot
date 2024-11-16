@@ -5,7 +5,7 @@ import config
 from cogs import start, info, game, weather, math, ai, other
 
 TOKEN = config.TG_TOKEN
-bot = AsyncTeleBot(TOKEN, "MARKDOWN")
+bot = AsyncTeleBot(TOKEN)
 
 
 @bot.message_handler(commands=["start", "help"])
@@ -35,7 +35,7 @@ async def Ai(message):
 @bot.callback_query_handler(func=lambda call:True)
 async def Callback(call):
     await info.callback(call)
-        
+
 @bot.message_handler(func=lambda message: True, content_types=['text', 'photo', 'sticker', 'location'])
 async def echo_message(message):
     other.gtm(message)

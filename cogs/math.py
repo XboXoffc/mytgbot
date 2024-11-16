@@ -6,7 +6,7 @@ from telebot import types
 import math
 
 TOKEN = config.TG_TOKEN
-bot = AsyncTeleBot(TOKEN, "MARKDOWN")
+bot = AsyncTeleBot(TOKEN)
 
 async def main(message):
     other.gtm(message)
