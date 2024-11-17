@@ -9,7 +9,7 @@ bot = AsyncTeleBot(TOKEN)
 
 async def main(message):
     other.gtm(message)
-    await bot.send_message(message.chat.id, """
+    text = """
 *Hello*
 My commands:
 /about
@@ -18,6 +18,9 @@ My commands:
 /math (num)(-sqrt, -sqr, -sin, -cos, -tg)
 /ai_assist (prompt)
 Check my github for docs in /about
-""", "MARKDOWN")
-
+"""
+    try:
+        await bot.send_message(message.chat.id, text, "MARKDOWN")
+    except:
+        await bot.send_message(message.chat.id, text)
 print("Cogs | start.py is ready")

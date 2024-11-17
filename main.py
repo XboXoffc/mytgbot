@@ -2,7 +2,7 @@ from telebot.async_telebot import AsyncTeleBot
 import asyncio
 import requests
 import config
-from cogs import start, info, game, weather, math, ai, other
+from cogs import start, info, support, game, weather, math, ai, other
 
 TOKEN = config.TG_TOKEN
 bot = AsyncTeleBot(TOKEN)
@@ -15,6 +15,10 @@ async def Start(message):
 @bot.message_handler(commands=["info", "about"])
 async def Info(message):
     await info.main(message)
+
+@bot.message_handler(commands=["support"])
+async def Support(message):
+    await support.main(message)
 
 @bot.message_handler(commands=["game"])
 async def Game(message):
