@@ -22,7 +22,7 @@ ai_user_maxtoken = config.AI_USER_MAXTOKEN  #
 llm = Llama(                        #parameters
     model_path = ai_model,          #ai gguf model
     chat_format="llama-3",          #idk
-    verbose=ai_logs,                  #trash in command stroke
+    verbose=ai_logs,                #trash in command stroke
     n_threads=ai_threads,           #how much use cpu threads
     n_threads_batch=ai_b_threads,   #how much threads use for history
     n_batch=ai_user_maxtoken,
@@ -36,12 +36,26 @@ async def main(message):
     request.pop(0)                     # prompt for ai
     request = " ".join(request)        #
 
+    delete_history = False
+    if "-del" in request:
+        delete_history = True
+        request = request.split(" ")
+        request.pop(request.index('-del'))
+        request = " ".join(request)
+
+    anonimous_mode = False
+    if '-anon' in request:
+        anonimous_mode = True
+        request = request.split(' ')
+        request.pop(request.index('-anon'))
+        request = " ".join(request)
+
     history_enable = True       #
     if ai_max_history <= 0:     #check history disable
         history_enable = False  #
 
     if len(request) > 1:             #check prompt
-        if history_enable:
+        if history_enable and not anonimous_mode:
             try:
                 with open(config.AI_HISTORY, 'r') as file:                                                      #get a history
                     ai_history = json.load(file)                                                                #
@@ -53,15 +67,21 @@ async def main(message):
                 with open(config.AI_HISTORY, 'r') as file:                                                      #
                     ai_history = json.load(file)                                                                #
                     ai_history.setdefault(str(message.chat.id), [{"role": "system", "content": ai_const}])      #add new history for chat id
+
             ai_history_full = ai_history                                    #converting history
             ai_history = ai_history[f'{message.chat.id}']                   #
-            ai_history.append({"role": "user", "content": request})         #add request to history
+            if delete_history:                                              #if there is -del
+                ai_history = [{"role": "system", "content": ai_const}]      #delete history
+                ai_history.append({"role": "user", "content": request})     #add temp history (because history will not save)
+            else:                                                           #else
+                ai_history.append({"role": "user", "content": request})     #add request to history
+
             if len(ai_history) > ai_max_history:                     #
                 for i in range(4):                                   #delete a old history if it reach maximum
                     ai_history.pop(1)                                #
-        elif not history_enable:                                            #add temp history list
-            ai_history = [{"role": "system", "content": ai_const}]          #if history disabled
-            ai_history.append({"role": "user", "content": request})         #add request to history
+        else:                                                           #if history disabled or request anonymous
+            ai_history = [{"role": "system", "content": ai_const}]      #add temp history list
+            ai_history.append({"role": "user", "content": request})     #add request to history
 
         try:
             await bot.send_chat_action(message.chat.id, "typing")                                     #change status to 'typing'
@@ -71,7 +91,7 @@ async def main(message):
             except:                                                                                             #with parse
                 await bot.reply_to(message, output["choices"][0]["message"]["content"])                         #markdown
 
-            if history_enable:                                         
+            if history_enable and not anonimous_mode:                                         
                 ai_history.append(output['choices'][0]['message'])          # add to history
                 with open(config.AI_HISTORY,'w') as file:                   #
                     ai_history_full[f'{message.chat.id}'] = ai_history      # return new history

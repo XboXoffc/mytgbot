@@ -18,4 +18,4 @@ You can help me financially(with donate) or message me(@xbox202) any your idea
     await bot.send_message(message.chat.id, text, reply_markup=markup)
 
 
-print("Cogs | *** is ready")
+print("Cogs | support.py is ready")

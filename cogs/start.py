@@ -16,7 +16,7 @@ My commands:
 /weather (city)(-a, -p)
 /game (-b, -d, -f, -bl, -s)
 /math (num)(-sqrt, -sqr, -sin, -cos, -tg)
-/ai_assist (prompt)
+/ai_assist (prompt)(-anon, -del)
 Check my github for docs in /about
 """
     try:
