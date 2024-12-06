@@ -2,7 +2,7 @@ from telebot.async_telebot import AsyncTeleBot
 import asyncio
 import requests
 import config
-from cogs import start, info, support, game, weather, math, ai, other
+from cogs import start, info, support, game, weather, math, ai, osu, other
 
 TOKEN = config.TG_TOKEN
 bot = AsyncTeleBot(TOKEN)
@@ -43,6 +43,9 @@ async def Callback(call):
 @bot.message_handler(func=lambda message: True, content_types=['text', 'photo', 'sticker', 'location'])
 async def echo_message(message):
     other.gtm(message)
+    message_split = message.text.split(' ')
+    if message_split[0] in ['/osu' ,'o' ,'su' , 'osu']:
+        await osu.main(message)
 
 print("Bot | already started\n\n")
 asyncio.run(bot.polling(non_stop=True))
