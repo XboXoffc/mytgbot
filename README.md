@@ -1,4 +1,5 @@
 # about
+this repo is old, go to https://github.com/xboxoffc/osubot
 just mine pet-project
 
 bot in telegram: @xboxoffcbot
